@@ -1,0 +1,14 @@
+.cart{
+    display: flex;
+    flex-direction: row;
+    width: 140px;
+    margin-right: 1rem;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(194, 190, 190, 0.637);
+}
+.carrito{
+    width: 30%;
+}
