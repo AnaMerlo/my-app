@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); 
+
+
+
+
+
+.section__div {
+    justify-self: center;
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 8%);
+}
+.section__img--300{
+    width: 100%;
+}
+.section__title{
+    padding-top: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: "Montserrat",sans-serif;
+}

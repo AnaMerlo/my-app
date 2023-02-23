@@ -1,0 +1,10 @@
+
+
+.div{
+    display: flex;
+}
+.title{
+    font-size: 2rem;
+    text-align: center;
+    margin: 6rem;
+}

@@ -1,0 +1,13 @@
+.boton{
+    border: none;
+    padding: 10px;
+    border-radius: 2rem;
+    font-size: 1rem;
+    background-color: rgb(228, 23, 74);
+    color: white;
+    text-decoration: none;
+}
+.input{
+    width: 100px;
+    border-radius: 2rem ;
+}
