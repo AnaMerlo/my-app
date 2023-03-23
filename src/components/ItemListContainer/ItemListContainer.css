@@ -1,12 +1,10 @@
 
 .greeting{
     position: absolute;
-    top: 500px;
-    right: 300px;
+    top: 285px;
+    right: 350px;
     z-index: 1;
     font-style: italic;
+    color: white;
+    text-shadow: 5px 0px #000000a6;
 }
-.carousel-inner{
-    width: 80%;
-}
-

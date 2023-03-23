@@ -16,7 +16,7 @@ const Navbar = () => {
                 <span className='navbar-toggler-icon'></span>
             </button>
             <div className='collapse navbar-collapse justify-content-center' id="navbarNavAltMarkup">
-                <div className='navbar-nav g-2'>
+                <div className='navbar-nav gap-3'>
                 <NavLink to={'/category/Escolar'} className={({isActive}) => isActive? 'active' : 'nav-link'}>Libros y comics</NavLink>
                 <NavLink to={'/category/Novela'}  className={({isActive}) => isActive? 'active' : 'nav-link'} >Novelas y películas</NavLink>
                 <NavLink to={'/category/Manga'} className={({isActive}) => isActive? 'active' : 'nav-link'} >Manga</NavLink>

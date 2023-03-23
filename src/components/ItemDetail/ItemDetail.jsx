@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom';
+
 import ItemCount from '../ItemCount/ItemCount';
+import { useCart } from '../../context/CartContext'
 
-const ItemDetail = ({img, name, category, price, description, stock}) => {
+const ItemDetail = ({id,img, name, price, description, stock}) => {
+    const [quantity, setQuantity] = useState(0)
 
-    const handleOnAdd = (value) =>{
-        console.log(`se agrego ${value}`);
+    const { addItem, getProductQuantity } = useCart()
+
+    const productQuantity = getProductQuantity(id)
+
+    const handleOnAdd = (quantity) =>{
+        setQuantity(quantity)
+        const producToAdd = {
+            id, name, price, quantity
+        }
+        addItem(producToAdd)
+        
     }
 
     return (
@@ -16,7 +29,8 @@ const ItemDetail = ({img, name, category, price, description, stock}) => {
                 <p style={{fontWeight:'bold'}}>$ {price}</p>
                 <p className='section__title'>Cantidad disponible: {stock}</p>
             </div>
-            <ItemCount onAdd = {handleOnAdd} stock = {stock} initial = {1}/>
+            { stock !== 0 ? <ItemCount onAdd = {handleOnAdd}  stock = {stock} initial = {productQuantity}/> : <p>no hay stock</p> }
+            {/* {quantity > 0? <Link to={'/cart'} className='boton' style={{height: 100}}>Finalizar compra</Link> : <ItemCount onAdd = {handleOnAdd}  stock = {stock} initial = {productQuantity}/>} */}
         </div>
     )
 }

@@ -55,7 +55,7 @@ const products = [
     },
     {
         id: "7",
-        name: "El silencio del viento",
+        name: "La música del silencio",
         price: 5000 ,
         category: "Novela",
         img:"https://http2.mlstatic.com/D_NQ_NP_722208-MLA41780310436_052020-O.webp" ,
