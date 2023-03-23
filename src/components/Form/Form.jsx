@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
 const Form = () => {
-    
+
+    const [buyerEmail, setBuyerEmail] = useState('')
     const [buyerPhone, setBuyerPhone] = useState('')
     const [buyerName, setBuyerName] = useState('')
-    const [buyerEmail, setBuyerEmail] = useState('')
     
-
-
+    
     return (
         <div>
         <h1>Formulario</h1>
@@ -32,9 +31,7 @@ const Form = () => {
                         </div>
                     </div>
                     {/* <!-- campo para boton enviar --> */}
-                    <div class="form__flex ">
-                        <input type="submit" value="Enviar"/>
-                    </div>
+                    
                 </form>
             {/* </section> */}
         </div>

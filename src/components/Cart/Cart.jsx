@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {  useCart } from '../../context/CartContext';
 
 
-// import { getProducts } from '../../asyncMock';
+
 // import Item from '../Item/Item';
 // import ItemDetail from '../ItemDetail/ItemDetail';
 import ItemCart from '../ItemCart/ItemCart';
@@ -42,10 +42,12 @@ const Cart = () => {
             
             {cart.map(prod => <ItemCart key = {prod. id} {...prod}/>)}
             <table style={{display:'flex', justifyContent:'flex-end'}}>
-            <tr>
-                <th scope="row" style={{width:'300px'}}>TOTAL</th>
-                <td style={{width:'300px'}}>${totalTopay}</td>
-            </tr>
+                <tfoot>
+                    <tr>
+                        <th scope="row" style={{width:'300px'}}>TOTAL</th>
+                        <td style={{width:'300px'}}>${totalTopay}</td>
+                    </tr>
+                </tfoot>
             </table>
             <button className="boton bg-black" onClick={() => clearCart()}>Vaciar</button>
             <button onClick={() => navigate ('/checkout')}>checkout</button>

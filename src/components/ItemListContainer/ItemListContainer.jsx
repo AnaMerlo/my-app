@@ -25,7 +25,7 @@ const ItemListContainer = ({greeting}) => {
         const collectionRef = categoryId
         ? query(collection(db, 'products'), where('category', '==', categoryId))
         : collection(db, 'products')
-
+        
         getDocs(collectionRef).then(response=>{
             const productsAdapted = response.docs.map(doc => {
                 const data = doc.data()
