@@ -27,7 +27,7 @@ const ItemCart = ({id, name, price, quantity}) => {
                         <td style={{width:'300px'}}>{price}</td>
                         <td style={{width:'300px'}}>{quantity}</td>
                         <td style={{width:'300px'}}>$ {price * quantity}</td>
-                        <td style={{width:'300px'}}><button onClick={handleRemoveItem}>Remover</button></td>
+                        <td style={{width:'300px'}}><button onClick={handleRemoveItem}>X</button></td>
                     </tr>
             </tbody>
             </table>

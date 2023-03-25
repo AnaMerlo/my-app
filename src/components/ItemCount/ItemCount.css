@@ -1,13 +1,46 @@
 .boton{
     border: none;
-    padding: 10px;
-    border-radius: 2rem;
+    padding: 9px;
+    border-radius: 3px;
     font-size: 1rem;
-    background-color: rgb(228, 23, 74);
+    background-color: black;
     color: white;
     text-decoration: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
 }
-.input{
+.boton:hover{
+    color: black;
+    font-weight: bold;
+
+}
+
+.boton::after{
+    content: "";
+    background-color: rgba(144, 177, 184, 0.651);
+    position: absolute;
+    z-index: -1;
+    padding: 10px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 100%;
+    bottom: -100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.boton:hover::after{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+.inputCount{
     width: 100px;
     border-radius: 2rem ;
 }

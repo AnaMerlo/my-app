@@ -19,6 +19,7 @@
 .nav-link:hover{
     color: rgb(228, 23, 74);
 }
+
 .active{
     color: rgb(228, 23, 74);
     font-style: normal;

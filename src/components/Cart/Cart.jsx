@@ -2,11 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {  useCart } from '../../context/CartContext';
+import './Cart.css'
 
-
-
-// import Item from '../Item/Item';
-// import ItemDetail from '../ItemDetail/ItemDetail';
 import ItemCart from '../ItemCart/ItemCart';
 
 const Cart = () => {
@@ -17,7 +14,7 @@ const Cart = () => {
     if(totalTopay === 0){
         return(
             <div>
-                <h1>
+                <h1 style={{fontWeight:'bold'}}>
                     No hay productos en el carrito
                 </h1>
                 <Link className='boton' to={'/'}>Seguir comprando</Link>
@@ -26,7 +23,7 @@ const Cart = () => {
     }
     return (
         <div>
-        <h1>Tus productos</h1> 
+        <h1 style={{fontSize:'1.5rem', marginBottom: '2rem', textAlign:'center'}}>Tus productos</h1> 
             
             <table className="table">
                 <thead >
@@ -49,8 +46,10 @@ const Cart = () => {
                     </tr>
                 </tfoot>
             </table>
-            <button className="boton bg-black" onClick={() => clearCart()}>Vaciar</button>
-            <button onClick={() => navigate ('/checkout')}>checkout</button>
+            <div className='div__flex'>
+            <button className="boton bg-red" style={{width:'470px'}} onClick={() => clearCart()}>Vaciar</button>
+            <button className="boton" style={{width:'470px'}} onClick={() => navigate ('/checkout')}>Checkout</button>
+            </div>
         </div>
     )
 }

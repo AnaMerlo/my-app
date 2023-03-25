@@ -1,23 +1,6 @@
-
-.greeting{
-    position: absolute;
-    top: 285px;
-    right: 350px;
-    z-index: 1;
-    font-style: italic;
-    color: white;
-    text-shadow: 5px 0px #000000a6;
-}
-
-.slider{
-    width: 100vw;
-    height: 75vh;
-    overflow: hidden;
-    margin-top: 40px;
-}
-
-.slider__img{
-    width: 100%;
+.h-vh{
+    height: 120vh;
+    
 }
 .ring {
     --uib-size: 40px;

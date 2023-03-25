@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ItemCount from '../ItemCount/ItemCount';
 import { useCart } from '../../context/CartContext'
 
-const ItemDetail = ({id,img, name, price, description, stock}) => {
+const ItemDetail = ({id, img, name, price, description, stock}) => {
     const [quantity, setQuantity] = useState(0)
 
     const { addItem, getProductQuantity } = useCart()
 
     const productQuantity = getProductQuantity(id)
+
 
     const handleOnAdd = (quantity) =>{
         setQuantity(quantity)
@@ -17,7 +19,7 @@ const ItemDetail = ({id,img, name, price, description, stock}) => {
             id, name, price, quantity
         }
         addItem(producToAdd)
-        
+        toast.success(`Se agrego ${quantity} ${name} a tu carrito`, { theme:"dark"})
     }
 
     return (
@@ -29,8 +31,9 @@ const ItemDetail = ({id,img, name, price, description, stock}) => {
                 <p style={{fontWeight:'bold'}}>$ {price}</p>
                 <p className='section__title'>Cantidad disponible: {stock}</p>
             </div>
-            { stock !== 0 ? <ItemCount onAdd = {handleOnAdd}  stock = {stock} initial = {productQuantity}/> : <p>no hay stock</p> }
+            { stock !== 0 ? <ItemCount onAdd = {handleOnAdd}  stock = {stock} initial = {productQuantity}/> : <p style={{fontStyle:'normal', fontWeight:'bold'}}>NO HAY PRODUCTOS</p> }
             {/* {quantity > 0? <Link to={'/cart'} className='boton' style={{height: 100}}>Finalizar compra</Link> : <ItemCount onAdd = {handleOnAdd}  stock = {stock} initial = {productQuantity}/>} */}
+            <ToastContainer autoClose={3000}/>
         </div>
     )
 }

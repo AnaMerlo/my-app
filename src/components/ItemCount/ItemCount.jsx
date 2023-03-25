@@ -23,7 +23,7 @@ const ItemCount = ({onAdd, stock = 0, initial = 1}) => {
     return (
     <div>
         <button style={{borderBottomLeftRadius:'2rem', borderTopLeftRadius:'2rem'}} onClick={decrement}>-</button>
-        <input className="input" value={quantity} onChange = {(e) => setQuantity(e.target.quantity)}/>
+        <input className="inputCount" value={quantity} onChange = {(e) => setQuantity(e.target.quantity)}/>
         <button style={{borderBottomRightRadius:'2rem', borderTopRightRadius:'2rem'}} onClick={increment}>+</button>
         <button className="boton" onClick={() => onAdd(quantity)}>Agregar al carrito</button>
     </div>

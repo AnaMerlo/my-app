@@ -2,16 +2,26 @@
 import { useCart } from "../../context/CartContext"
 import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from "firebase/firestore"
 import { db } from '../../services/firebase/index'
-import Form from "../Form/Form"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import './Checkout.css'
+import { DotPulse } from '@uiball/loaders'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+<DotPulse 
+ size={40}
+ speed={1.3} 
+ color="black" 
+/>
+
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false);
     const { cart, totalTopay, clearCart } = useCart();
-    const [buyerPhone, setBuyerPhone] = useState('');
     const [buyerName, setBuyerName] = useState('');
     const [buyerEmail, setBuyerEmail] = useState('')
+    const [buyerPhone, setBuyerPhone] = useState('');
 
     const navigate = useNavigate()
     
@@ -23,15 +33,18 @@ const Checkout = () => {
             const objOrder = {
                     buyer: {
                     name: buyerName,
-                    phone: buyerPhone,
+                    phone:buyerPhone,
                     email: buyerEmail
                     
                 },
                 items: cart,
                 totalTopay
             }
+            
             console.log(objOrder)
+
             const productsOut = []
+
             const batch = writeBatch(db)
             
             const ids = cart.map(prod => prod.id)
@@ -39,8 +52,6 @@ const Checkout = () => {
             const productsRef = collection(db, 'products')
             
             const productsAddedFs = await getDocs(query(productsRef, where(documentId(), 'in', ids)))
-            
-
             
             
             const { docs } = productsAddedFs
@@ -73,10 +84,10 @@ const Checkout = () => {
                 setTimeout(() => {
                     navigate('/')
                 }, 2000)
-                
+                toast.info(`el id de su orden es: ${orderAdded.id}`, {theme: "dark"})
                 console.log(`el id de su orden es: ${orderAdded.id}`)
             } else {
-                console.log('no hay stock')
+                toast.warn('no hay stock', {theme: "dark"})
             }
 
         } catch (error){
@@ -87,19 +98,42 @@ const Checkout = () => {
     } 
     
     if(loading){
-        return <h1> se esta generando su orden...</h1>
+        return (
+            <>
+            <h1> se esta generando su orden...</h1>
+            <div class="dot-pulse">
+            <div class="dot-pulse__dot"></div>
+            </div>
+            </>
+        ) 
     }
 
     return (
         <>
-        <form className="formulario">
-            <input value={buyerName} required type="text" name="name" placeholder="Ingresá tu nombre completo"  onChange={(e)=> setBuyerName  (e.target.value)}/>
-            <input value={buyerEmail} required type="email" name="email" placeholder="Ingresá tu email" onChange={(e)=> setBuyerEmail  (e.target.value)}/>
-            <input value={buyerPhone} required type="number" name="tel" placeholder="Ingresá tu teléfono" onChange={(e)=> setBuyerPhone  (e.target.value)}/>
+        <div className="form">
+        <form action="" id="miForm" className="form" > 
+                {/* <!-- campo para nombre --> */}
+            <div>
+                <label for="nombreApellido"></label>
+                <input type="text"  required placeholder="Ingresa tu Nombre*" className="input" value={buyerName} onChange = {(e) => setBuyerName(e.target.value)}/>
+            </div>
+            {/* <!-- campo para telefono --> */}
             
+            <div> 
+                <label for="telefono"></label>
+                <input type="tel" placeholder="Ingresa tu Teléfono*" className="input" value={buyerPhone} onChange = {(e) => setBuyerPhone(e.target.value)}/>  
+            </div>
+            {/* <!-- campo para correo --> */}
+            <div>
+                <label for="correoElectronico" ></label>
+                <input type="email"  required placeholder="Ingresa tu Email"  className="input" value={buyerEmail} onChange = {(e) => setBuyerEmail(e.target.value)}/>
+            </div>
+                
+                {/* <!-- campo para boton enviar --> */}
+            <button type="submit" onClick={createOrder} className="boton bg-black" style={{width:'470px'}}>Generar orden</button>
         </form>
-        {/* <Form /> */}
-        <button type="submit" onClick={createOrder} className="generarOrden">Generar orden</button>
+        <ToastContainer autoClose={5000}/>
+        </div>
         </>
     )
 }

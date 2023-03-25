@@ -1,0 +1,11 @@
+.div__flex{
+    display: flex;
+    justify-content: space-around;
+    margin: 100px;
+    flex-direction: row;
+    align-items: center;
+
+}
+.bg-red{
+    background-color: rgb(163, 59, 59);
+}

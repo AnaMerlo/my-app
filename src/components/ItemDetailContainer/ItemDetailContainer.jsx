@@ -1,36 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
-import { getDoc, doc} from 'firebase/firestore'
-import { db } from '../../services/firebase'
+import { useProducts } from '../../services/firestore/products'
+import { useAsync } from '../../hooks/useAsync';
+import './ItemDetailContainer.css'
+import { Ring } from '@uiball/loaders'
+
+<Ring 
+ size={40}
+ lineWeight={5}
+ speed={2} 
+ color="black" 
+/>
 
 const ItemDetailContainer = () => {
     
-    const [products, setProducts] = useState()
-    const [loading, setLoading] = useState(true)
     
     const { productId } = useParams()
-    console.log(productId)
 
-    useEffect(()=>{
+    const { getProductById } = useProducts()
 
-        const docRef = doc(db, 'products', productId)
-        getDoc(docRef).then(response=>{
-            
-            const data = response.data()
-            const productAdapted = { id: response.id, ...data }
-            setProducts(productAdapted)
-        }).finally(()=>{
-            setLoading(false)
-        })
-    }, [])
+    const getProductxId = () => getProductById(productId)
+
+    const { data: products, error, loading } = useAsync(getProductxId, [productId])
+
 
     if(loading){
-        return <h1>Cargando...</h1>
+        return <svg
+        class="ring"
+        viewBox="25 25 50 50"
+        stroke-width="5"
+      >
+        <circle cx="50" cy="50" r="20" />
+      </svg>
+    }
+
+    if(error){
+        return <h1>Hubo un error...</h1>
     }
 
     return (
-        <div>
+        <div className='h-vh'>
         
         <ItemDetail {...products}/> 
         
