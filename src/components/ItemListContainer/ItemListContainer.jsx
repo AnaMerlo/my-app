@@ -31,13 +31,17 @@ const ItemListContainer = ({greeting}) => {
     const { data: products, error, loading } = useAsync(getProductsOfCategory, [categoryId])
 
     if(loading){
-        return <svg
+        return (
+            <div style={{textAlign: 'center'}}>
+        <svg
         class="ring"
         viewBox="25 25 50 50"
         stroke-width="5"
-      >
+        >
         <circle cx="50" cy="50" r="20" />
-      </svg>
+        </svg>
+            </div>
+        )
     }
 
     if(error){

@@ -10,9 +10,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 <DotPulse 
- size={40}
- speed={1.3} 
- color="black" 
+    size={40}
+    speed={1.3} 
+    color="black" 
 />
 
 
@@ -85,7 +85,7 @@ const Checkout = () => {
                     navigate('/')
                 }, 2000)
                 toast.info(`el id de su orden es: ${orderAdded.id}`, {theme: "dark"})
-                console.log(`el id de su orden es: ${orderAdded.id}`)
+                
             } else {
                 toast.warn('no hay stock', {theme: "dark"})
             }
